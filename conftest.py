@@ -5,6 +5,7 @@ from langchain_openai import ChatOpenAI
 from ragas.llms import LangchainLLMWrapper
 
 os.environ["OPENAI_API_KEY"] = "my_api_key_for_open_ai"
+os.environ["RAGAS_APP_TOKEN"] = "my_ragas_token_to see results on the dashboard"
 
 
 @pytest.fixture

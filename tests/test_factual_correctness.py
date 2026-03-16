@@ -14,10 +14,14 @@ async def test_relevance_factual(llm_wrapper, get_data):
                FactualCorrectness(llm=llm_wrapper)]
 
     eval_dataset = EvaluationDataset([get_data])
-    results = evaluate(dataset=eval_dataset,metrics=metrics)
+
+    # if we nor include the metrics , the ragas library will evaluate all available for LLM evaluation
+    # results = evaluate(dataset=eval_dataset, metrics=metrics)
+    results = evaluate(dataset=eval_dataset)
     print(results)
     for result in results:
         assert result["answer_relevancy"] > 0.8
+    results.upload()
 
 
 @pytest.fixture
